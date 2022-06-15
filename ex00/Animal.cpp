@@ -14,10 +14,10 @@ Animal::Animal( const Animal &src )
 
 Animal::~Animal( void )
 {
-    std::cout << "Animal deconstructor called" << std::endl;
+    std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal & Animal::operator=( Animal const & rhs )
+Animal & Animal::operator=( Animal const &rhs )
 {
     std::cout << "Assignement operator for Animal called" << std::endl;
     this->type = rhs.getType();

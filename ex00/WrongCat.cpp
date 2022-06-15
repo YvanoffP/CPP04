@@ -6,10 +6,17 @@ WrongCat::WrongCat( void )
     std::cout << "Default constructor for WrongCat called" << std::endl;
 }
 
-WrongCat::WrongCat( WrongCat const & src )
+WrongCat::WrongCat( WrongCat const & src ): WrongAnimal( src )
 {
     std::cout << "Copy constructor for WrongCat called" << std::endl;
     *this = src;
+}
+
+WrongCat & WrongCat::operator=( WrongCat const &rhs )
+{
+    std::cout << "Assignement operator for Animal called" << std::endl;
+    this->type = rhs.getType();
+    return (*this);
 }
 
 WrongCat::~WrongCat( void )
