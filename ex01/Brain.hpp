@@ -18,6 +18,9 @@ class Brain
 
         Brain &operator=( const Brain &other );
 
+        void printIdeas( void ) const;
+        std::string *getIdeas( void );
+
         std::string ideas[Brain::numberOfIdeas];
 };
 
