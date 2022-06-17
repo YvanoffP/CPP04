@@ -1,36 +1,52 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
+#include <sstream>
 
-#define NUMBER_OF_ANIMALS 8
-int    main( void )
+# define AMOUNT 5
+
+int main()
 {
-    Animal    *animals[NUMBER_OF_ANIMALS];
-    Brain    *brain;
-    //Uncomment the test to check that the Animal class is absract
+	Animal *animals[AMOUNT];
+
+	int 				i;
+	std::string 		result;
+	std::ostringstream 	convert;
+
+	for (i = 0; i < AMOUNT / 2; i++) {
+		animals[i] = new Dog();
+		std::string *ideas = dynamic_cast<Dog *>(animals[i])->getBrain()->getIdeas();
+		for (int j = 0; j < 100; j++) {
+			convert << "Dog: " << i << " | Ideas: " << j << std::endl;
+			result = convert.str();
+			ideas[j] = result;
+            convert.str("");
+            convert.clear();
+		}
+	}
+	for (;i < AMOUNT; i++) {
+		animals[i] = new Cat();
+		std::string *ideas = dynamic_cast<Cat *>(animals[i])->getBrain()->getIdeas();
+		for (int j = 0; j < 100; j++) {
+			convert << "Cat: " << i << " | Ideas: " << j << std::endl;
+			result = convert.str();
+			ideas[j] = result;
+            convert.str("");
+            convert.clear();
+		}
+	}
+
+	int j;
+	for (j = 0; j < AMOUNT / 2; j++) {
+		dynamic_cast<Dog *>(animals[j])->getBrain()->printIdeas();
+	}
+	for (; j < AMOUNT; j++) {
+		dynamic_cast<Cat *>(animals[j])->getBrain()->printIdeas();
+	}
+
     //Animal test;
+	while (i-- > 0)
+		delete animals[i];
 
-    for (int i = 0; i < NUMBER_OF_ANIMALS; i++)
-    {
-        if (i < NUMBER_OF_ANIMALS / 2)
-            animals[i] = new Dog();
-        else
-            animals[i] = new Cat();
-        std::cout << animals[i]->getType() << std::endl;
-    }
-    brain = animals[7]->getBrain();
-    brain->ideas[0] = "My brain hurts atm";
-    brain->ideas[1] = "I am really tired rn";
-    brain->ideas[2] = "Haiii";
-    brain->ideas[3] = "Helooooow";
-    std::cout << animals[7]->getBrain()->ideas[0] << std::endl;
-
-    animals[3]->makeSound();
-    animals[5]->makeSound();
-    std::cout << "Type of animal 2: " << animals[2]->getType() << std::endl;
-
-    *(animals[5]) = *(animals[7]);
-    std::cout << animals[5]->getBrain()->ideas[2] << std::endl;
-    for (int i = 0; i < NUMBER_OF_ANIMALS; i++)
-        delete animals[i];
+	return 0;
 }

@@ -10,14 +10,13 @@ class Cat: public Animal
 
         Cat( void );
         Cat( const Cat & src );
-        ~Cat( void );
+        virtual ~Cat( void );
 
-        Cat &operator=( Cat const & rhs );
-        virtual Animal &operator=( const Animal &other );
+        Cat &operator=( const Cat & rhs );
 
         virtual void makeSound( void ) const;
 
-        virtual Brain *getBrain( void ) const;
+        Brain *getBrain( void ) const;
 
     private:
 
