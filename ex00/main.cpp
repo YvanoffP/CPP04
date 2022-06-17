@@ -21,10 +21,13 @@ int main( void )
 
     const WrongAnimal *weirdo = new WrongAnimal();
     const WrongAnimal *cato = new WrongCat();
+    const WrongCat *meow = new WrongCat();
 
     std::cout << cato->getType() << std::endl;
     weirdo->makeSound();
     cato->makeSound();
+    meow->makeSound();
     delete weirdo;
+    delete meow;
     delete cato;
 }

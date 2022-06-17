@@ -21,7 +21,7 @@ Dog & Dog::operator=( Dog const &rhs )
 
 Dog::~Dog( void )
 {
-    std::cout << "Deconstructor for Dog called" << std::endl;
+    std::cout << "Destructor for Dog called" << std::endl;
 }
 
 void Dog::makeSound( void ) const
